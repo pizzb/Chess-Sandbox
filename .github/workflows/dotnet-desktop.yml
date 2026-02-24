@@ -25,3 +25,12 @@ jobs:
 
     - name: Build
       run: dotnet build ChessApp.sln --configuration Release --no-restore
+
+    - name: Publish Application
+      run: dotnet publish ChessApp.sln -c Release -r win-x64 --self-contained false
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Chess-Sandbox-Build
+        path: ChessApp/bin/Release/**
